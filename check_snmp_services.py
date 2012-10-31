@@ -50,7 +50,8 @@ def main():
     (options, args) = parser.parse_args()
 
     # Convert command line to pysnmp language
-    target = cmdgen.UdpTransportTarget((options.hostname, options.port))
+    target = cmdgen.UdpTransportTarget((options.hostname, options.port),
+                                       timeout=5, retries=2)
     if options.protocol == '3':
         authproto = cmdgen.usmNoAuthProtocol
         if options.authproto == 'MD5':
